@@ -3,7 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRate.Tracker.WebApi", "ExchangeRate.Tracker.WebApi\ExchangeRate.Tracker.WebApi.csproj", "{7815CB58-D0B0-4B88-A07B-12A5493503A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRate.Tracker.WebApi", "ExchangeRate.Tracker.WebApi\ExchangeRate.Tracker.WebApi.csproj", "{7815CB58-D0B0-4B88-A07B-12A5493503A7}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ExchangeRate.Tracker.Web", "exchange-rate-tracker-web\ExchangeRate.Tracker.Web.esproj", "{339B4D3D-3041-4738-B711-31BEC9DC9564}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CECDDF0C-95D4-4034-8ADB-CAB3EBA06756}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRate.Tracker.MNBServices", "ExchangeRate.Tracker.MNBServices\ExchangeRate.Tracker.MNBServices.csproj", "{EBD4EC2C-0192-4B92-A38A-955584854B6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A21856B4-135E-4419-899A-8CD1F09C7A94}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRate.Tracker.Infrastructure", "ExchangeRate.Tracker.Infrastructure\ExchangeRate.Tracker.Infrastructure.csproj", "{259DBF3D-7023-4077-9CA8-92D7AB50D53D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRate.Tracker.Domain", "ExchangeRate.Tracker.Domain\ExchangeRate.Tracker.Domain.csproj", "{0D5DA1BF-6680-4E61-AC8E-0F132B03ACCE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{82F990FC-0091-44C0-989B-A4B372FB5875}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRate.Tracker.ApplicationService", "ExchangeRate.Tracker.ApplicationService\ExchangeRate.Tracker.ApplicationService.csproj", "{B52427DD-F406-4190-AD38-9302DDD004CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +34,32 @@ Global
 		{7815CB58-D0B0-4B88-A07B-12A5493503A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7815CB58-D0B0-4B88-A07B-12A5493503A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7815CB58-D0B0-4B88-A07B-12A5493503A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339B4D3D-3041-4738-B711-31BEC9DC9564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{339B4D3D-3041-4738-B711-31BEC9DC9564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{339B4D3D-3041-4738-B711-31BEC9DC9564}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{339B4D3D-3041-4738-B711-31BEC9DC9564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339B4D3D-3041-4738-B711-31BEC9DC9564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339B4D3D-3041-4738-B711-31BEC9DC9564}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CECDDF0C-95D4-4034-8ADB-CAB3EBA06756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECDDF0C-95D4-4034-8ADB-CAB3EBA06756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECDDF0C-95D4-4034-8ADB-CAB3EBA06756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECDDF0C-95D4-4034-8ADB-CAB3EBA06756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD4EC2C-0192-4B92-A38A-955584854B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD4EC2C-0192-4B92-A38A-955584854B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD4EC2C-0192-4B92-A38A-955584854B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD4EC2C-0192-4B92-A38A-955584854B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259DBF3D-7023-4077-9CA8-92D7AB50D53D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259DBF3D-7023-4077-9CA8-92D7AB50D53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259DBF3D-7023-4077-9CA8-92D7AB50D53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259DBF3D-7023-4077-9CA8-92D7AB50D53D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5DA1BF-6680-4E61-AC8E-0F132B03ACCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5DA1BF-6680-4E61-AC8E-0F132B03ACCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5DA1BF-6680-4E61-AC8E-0F132B03ACCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5DA1BF-6680-4E61-AC8E-0F132B03ACCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B52427DD-F406-4190-AD38-9302DDD004CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52427DD-F406-4190-AD38-9302DDD004CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52427DD-F406-4190-AD38-9302DDD004CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52427DD-F406-4190-AD38-9302DDD004CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

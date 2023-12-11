@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  exchangerate.tracker.webapi:
+    image: ${DOCKER_REGISTRY-}exchangeratetrackerwebapi
+    build:
+      context: .
+      dockerfile: ExchangeRate.Tracker.WebApi/Dockerfile

@@ -6,14 +6,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-ExchangeRate.Tracker.WebApi-39c3b3ff-6581-4af3-b711-d2d08a2f8a24</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.24" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.24" />
     <PackageReference Include="Microsoft.Identity.Web" Version="1.16.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExchangeRate.Tracker.ApplicationService\ExchangeRate.Tracker.ApplicationService.csproj" />
+    <ProjectReference Include="..\ExchangeRate.Tracker.Infrastructure\ExchangeRate.Tracker.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

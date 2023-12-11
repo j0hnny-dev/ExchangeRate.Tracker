@@ -1,4 +1,5 @@
-using Microsoft.AspNetCore.Authentication;
+using ExchangeRate.Tracker.ApplicationService;
+using ExchangeRate.Tracker.Infrastructure.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
 
@@ -12,6 +13,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 

@@ -1,0 +1,17 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://www.mnb.hu/arfolyamok.asmx?singleWsdl"
+    ],
+    "collectionTypes": [
+      "System.Collections.Generic.Dictionary`2",
+      "System.Collections.ObjectModel.Collection`1"
+    ],
+    "internalTypeAccess": true,
+    "namespaceMappings": [
+      "*, MnbExchnageRateService"
+    ],
+    "targetFramework": "netstandard2.1",
+    "typeReuseMode": "All"
+  }
+}

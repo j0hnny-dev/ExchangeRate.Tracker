@@ -1,0 +1,3 @@
+﻿namespace ExchangeRate.Tracker.Domain.Base;
+
+public interface IValueObject { }
