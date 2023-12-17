@@ -5,25 +5,27 @@ namespace ExchangeRate.Tracker.Domain.ExchangeRates;
 
 public class ExchangeRateEntity : IAggregateRoot, IEntity
 {
-    public DateTime StoreDate { get; }
+    public static ExchangeRateEntity Empty => new()
+    {
+        Id = ExchangeRateId.Undefinied,
+        TradingDate = DateTime.MinValue,
+        Comment = string.Empty,
+        Store = default,
+        Value = 0,
+        Currency = Currency.Empty
+    };
+
+    public ExchangeRateId Id { get; init; }
+
+    public DateTime TradingDate { get; init;  }
+
+    public DateTime? Store { get; init; }
 
     public Currency Currency { get; init; }
 
     public decimal Value { get; init; }
 
+    public double Unit { get; init; }
+
     public string Comment { get; init; }
-
-    private ExchangeRateEntity()
-    {
-
-    }
-
-    public static ExchangeRateEntity Create(Currency currency, decimal value)
-    {
-        return new ExchangeRateEntity
-        {
-            Currency = currency,
-            Value = value
-        };
-    }
 }

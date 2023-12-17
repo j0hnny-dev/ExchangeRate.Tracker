@@ -7,4 +7,10 @@
     <!-- Folder where production build objects will be placed -->
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist\exchange-rate-tracker-web\</PublishAssetsDirectory>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\components\" />
+    <Folder Include="src\app\models\" />
+    <Folder Include="src\app\pages\" />
+    <Folder Include="src\environments\" />
+  </ItemGroup>
 </Project>

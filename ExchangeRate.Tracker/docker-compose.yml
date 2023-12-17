@@ -1,8 +1,39 @@
-version: '3.4'
+version: '3.8'
 
 services:
+  angular-app:
+    build:
+      context: .
+      dockerfile: exchange-rate-tracker-web/Dockerfile
+    ports:
+      - "8080:80"
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
   exchangerate.tracker.webapi:
     image: ${DOCKER_REGISTRY-}exchangeratetrackerwebapi
+    ports:
+      - "9001:80"
     build:
       context: .
       dockerfile: ExchangeRate.Tracker.WebApi/Dockerfile
+    depends_on:
+      - mssql
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: exchange-rate-mssql
+    ports:
+      - "1433:1433"
+    environment:
+      MSSQL_SA_PASSWORD: "Alma1234" # Jelszó beállítása
+      MSSQL_PID: Developer
+      ACCEPT_EULA: "Y" # Elfogadás az EULA-nak (End User License Agreement)
+    volumes:
+      - ./database:/var/opt/mssql/data
+
+

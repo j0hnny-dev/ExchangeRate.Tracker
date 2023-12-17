@@ -1,6 +1,9 @@
-﻿namespace ExchangeRate.Tracker.WebApi.Models;
+﻿using ExchangeRate.Tracker.ApplicationService.Contracts;
+using System.Text.Json.Serialization;
 
-public record CreateExchangeRequest
+namespace ExchangeRate.Tracker.WebApi.Models;
+
+public record CreateExchangeRequest : IExchangeRate
 {
     public string Currency { get; init; }
 
@@ -8,5 +11,10 @@ public record CreateExchangeRequest
 
     public decimal Value { get; init; }
 
+    public double Unit { get; init; }
+
     public string Comment { get; init; }
+
+    [JsonIgnore]
+    public int Id => 0;
 }

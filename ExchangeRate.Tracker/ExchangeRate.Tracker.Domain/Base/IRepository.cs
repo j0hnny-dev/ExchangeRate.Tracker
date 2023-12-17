@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using ExchangeRate.Tracker.Domain.ExchangeRates;
 
 namespace ExchangeRate.Tracker.Domain.Base;
 
@@ -12,7 +10,9 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
 
     Task<IReadOnlyList<TEntity>> GetAllAsync();
 
-    Task<TEntity> FindByAsync(Expression<Func<TEntity, bool>> filter);
+    Task<TEntity> GetByAsync<TEntityId>(TEntityId id) where TEntityId : class, IEntityId;
 
-    Task<IReadOnlyList<TEntity>> FilterByAsync(IFilter<TEntity> filter);
+    Task<TEntity> FindByAsync(IPagedFilter<TEntity> filter);
+
+    Task<IReadOnlyList<TEntity>> FilterByAsync(IPagedFilter<TEntity> filter);
 }

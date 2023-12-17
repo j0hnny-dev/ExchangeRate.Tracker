@@ -14,3 +14,9 @@ Az alábbi funkciókat kérjük megvalósítani:
 --- Valuta
 --- Érték
 --- Megjegyzés (szöveges, nem kötelező, max. 100 karakter) 
+
+
+## Migráció hozzáadása a projekthez
+
+Add-Migration init -Project ExchangeRate.Tracker.Infrastructure -v
+

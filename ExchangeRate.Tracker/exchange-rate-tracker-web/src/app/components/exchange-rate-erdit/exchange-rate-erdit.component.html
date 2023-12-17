@@ -1,0 +1,32 @@
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Adat szerkesztése</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="currencyName" class="form-label">Deviza neve:</label>
+          <input type="text" id="currencyName" class="form-control" [value]="selectedCurrency?.currency" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="currencyValue" class="form-label">Deviza értéke:</label>
+          <input type="text" id="currencyValue" class="form-control" [value]="selectedCurrency?.value" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Érték nap:</label>
+          <input type="text" id="date" class="form-control" [value]="selectedCurrency?.day" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="comment" class="form-label">Megjegyzés:</label>
+          <textarea id="comment" class="form-control" [(ngModel)]="selectedCurrency?.comment"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+        <button type="button" class="btn btn-primary" (click)="saveChanges()">Mentés</button>
+      </div>
+    </div>
+  </div>
+</div>

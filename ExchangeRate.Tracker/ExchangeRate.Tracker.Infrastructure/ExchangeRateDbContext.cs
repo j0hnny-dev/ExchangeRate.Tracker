@@ -9,6 +9,7 @@ namespace ExchangeRate.Tracker.Infrastructure;
 internal class ExchangeRateDbContext : DbContext
 {
     private readonly string _connectionString;
+
     public virtual DbSet<ExchangeRateStoreModel> ExchangesRates { get; set; }
 
     public ExchangeRateDbContext(IOptions<DbConnectionConfiguration> options)
@@ -18,11 +19,12 @@ internal class ExchangeRateDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder
+        _ = optionsBuilder
             .EnableSensitiveDataLogging()
             .UseSqlServer(_connectionString, builder =>
             {
                 builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+                builder.MigrationsAssembly(typeof(ExchangeRateDbContext).Assembly.GetName().Name);
             });
     }
 

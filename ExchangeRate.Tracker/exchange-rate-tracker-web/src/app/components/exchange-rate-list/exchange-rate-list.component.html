@@ -1,0 +1,18 @@
+<!-- exchange-rate-list.component.html -->
+
+<div class="container mt-5">
+  <h2>Valuta Árfolyamok</h2>
+  <ul class="list-group mt-3">
+    <li class="list-group-item" *ngFor="let rate of exchangeRates">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <p><strong>Nap:</strong> {{ rate.day }}</p>
+          <p><strong>Deviza:</strong> {{ rate.currency }}</p>
+          <p><strong>Érték:</strong> {{ rate.value }}</p>
+          <p><strong>Unit:</strong> {{ rate.unit }}</p>
+          <p><strong>Megjegyzés:</strong> {{ rate.comment }}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

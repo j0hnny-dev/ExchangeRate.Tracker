@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExchangeRate.Tracker.WebApi</name>
+    </assembly>
+    <members>
+        <member name="P:ExchangeRate.Tracker.WebApi.Models.GetByCurrencyRequest.Currency">
+            <example>HUF</example>
+        </member>
+        <member name="P:ExchangeRate.Tracker.WebApi.Models.GetByCurrencyRequest.From">
+            <example>2023-12-12</example>
+        </member>
+        <member name="P:ExchangeRate.Tracker.WebApi.Models.GetByCurrencyRequest.To">
+            <example>2023-12-12</example>
+        </member>
+    </members>
+</doc>

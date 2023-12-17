@@ -1,4 +1,5 @@
-﻿using ExchangeRate.Tracker.ApplicationService;
+﻿using ExchangeRate.Tracker.ApplicationService.Contracts;
+using ExchangeRate.Tracker.ApplicationService.ExchangeRates;
 using ExchangeRate.Tracker.Domain.ExchangeRates;
 using ExchangeRate.Tracker.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ExchangeRate.Tracker.WebApi.Controllers;
 
-[Route("api/[controller]")]
+[Route("/exchange-rates")]
 [ApiController]
 public class ExchangeRateController : ControllerBase
 {
@@ -17,10 +18,10 @@ public class ExchangeRateController : ControllerBase
         _exchangeRateService = exchangeRateService;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<ExchangeRateDto>> GetAsync([FromQuery, Required] GetExchangeRequest request)
+    [HttpGet("/{id}", Name = "GetById")]
+    public async Task<ActionResult<ExchangeRateDto>> GetByIdAsync([FromRoute, Required] int id)
     {
-        var filter = ExchangeRateFilter.Create(request.Currency);
+        var filter = ExchangeRateFilter.Create().WithId(id.ToString());
 
         var result = await _exchangeRateService.GetByFilter(filter).ConfigureAwait(false);
         if (result == null)
@@ -32,9 +33,10 @@ public class ExchangeRateController : ControllerBase
     }
 
     [HttpPost(Name = "GetAllByFilter")]
-    public async Task<ActionResult<IReadOnlyList<ExchangeRateDto>>> GetAllByFilterAsync([FromBody, Required] PagedRequest<GetExchangeRequest> pagedRequest)
+    public async Task<ActionResult<IReadOnlyList<ExchangeRateDto>>> GetAllByFilterAsync([FromBody, Required] PagedRequest<GetByCurrencyRequest> pagedRequest)
     {
-        var filter = ExchangeRateFilter.Create(pagedRequest.Request.Currency)
+        var filter = ExchangeRateFilter.Create()
+            .WithCurrency(pagedRequest.Request.Currency)
             .WithPaging(pagedRequest.Skip, pagedRequest.Limit)
             .WithOrderBy(pagedRequest.OrderBy, pagedRequest.IsDesc);
 
@@ -43,7 +45,7 @@ public class ExchangeRateController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost]
+    [HttpPost("/create", Name = "Create")]
     public async Task<ActionResult<ExchangeRateDto>> CreateAsync([FromBody, Required] CreateExchangeRequest createExchangeRequest)
     {
         if (ModelState.IsValid)
@@ -56,6 +58,7 @@ public class ExchangeRateController : ControllerBase
             Value = createExchangeRequest.Value,
             Currency = createExchangeRequest.Currency,
             Comment = createExchangeRequest.Comment,
+            Day = createExchangeRequest.Day
         };
 
         var created = await _exchangeRateService.AddAsync(exchangeRateDto).ConfigureAwait(false);

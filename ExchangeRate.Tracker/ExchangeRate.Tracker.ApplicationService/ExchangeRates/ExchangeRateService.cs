@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using ExchangeRate.Tracker.ApplicationService.Contracts;
 using ExchangeRate.Tracker.Domain.Base;
 using ExchangeRate.Tracker.Domain.ExchangeRates;
 
-namespace ExchangeRate.Tracker.ApplicationService;
+namespace ExchangeRate.Tracker.ApplicationService.ExchangeRates;
 
-public class ExchangeRateService : IExchangeRateService
+internal class ExchangeRateService : IExchangeRateService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -15,7 +16,7 @@ public class ExchangeRateService : IExchangeRateService
         _mapper = mapper;
     }
 
-    public async Task<ExchangeRateDto> AddAsync(ExchangeRateDto exchangeRateDto)
+    public async Task<IExchangeRate> AddAsync(IExchangeRate exchangeRateDto)
     {
         var entity = _mapper.Map<ExchangeRateEntity>(exchangeRateDto);
 
@@ -26,9 +27,15 @@ public class ExchangeRateService : IExchangeRateService
         return _mapper.Map<ExchangeRateDto>(saved);
     }
 
-    public async Task<ExchangeRateDto> UpdateAsync(ExchangeRateDto exchangeRateDto)
+    public async Task<IExchangeRate> UpdateAsync(IExchangeRate exchangeRateDto)
     {
-        var entity = _mapper.Map<ExchangeRateEntity>(exchangeRateDto);
+        var oldModel = await _unitOfWork.ExchangeRateRepository.GetByAsync(new ExchangeRateId(exchangeRateDto.Id.ToString())).ConfigureAwait(false);
+        if (oldModel.Equals(ExchangeRateEntity.Empty))
+        {
+            return ExchangeRateDto.None;
+        }
+
+        var entity = _mapper.Map(exchangeRateDto, oldModel);
 
         var saved = await _unitOfWork.ExchangeRateRepository.UpdateAsync(entity).ConfigureAwait(false);
 
@@ -37,14 +44,18 @@ public class ExchangeRateService : IExchangeRateService
         return _mapper.Map<ExchangeRateDto>(saved);
     }
 
-    public async Task<ExchangeRateDto> GetByFilter(IFilter<ExchangeRateEntity> filter)
+    public async Task<IExchangeRate> GetByFilter(IPagedFilter<ExchangeRateEntity> filter)
     {
-        var entity = await _unitOfWork.ExchangeRateRepository.FindByAsync(filter.Filter).ConfigureAwait(false);
+        var entity = await _unitOfWork.ExchangeRateRepository.FindByAsync(filter).ConfigureAwait(false);
+        if (entity.Equals(ExchangeRateEntity.Empty))
+        {
+            return ExchangeRateDto.None;
+        }
 
         return _mapper.Map<ExchangeRateDto>(entity);
     }
 
-    public async Task<IReadOnlyList<ExchangeRateDto>> GetAllByFilter(IFilter<ExchangeRateEntity> filter)
+    public async Task<IReadOnlyList<IExchangeRate>> GetAllByFilter(IPagedFilter<ExchangeRateEntity> filter)
     {
         var entities = await _unitOfWork.ExchangeRateRepository.FilterByAsync(filter).ConfigureAwait(false);
 
